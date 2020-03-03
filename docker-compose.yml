@@ -1,0 +1,21 @@
+version: "3"
+services:
+  switchlink-transaction:
+    image: switchlink-transaction
+    ports:
+      - "8080:8000"
+    networks:
+      - switchlink
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    networks:
+      - switchlink
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=switchlink
+
+networks:
+  switchlink:
